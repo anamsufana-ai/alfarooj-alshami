@@ -873,9 +873,6 @@ body { font-variant-numeric: tabular-nums; }
 /* Cards: the button always sits the same distance from the bottom. */
 .pick-card { display: flex; flex-direction: column; }
 .pick-body { flex: 1; display: flex; flex-direction: column; gap: 0.35rem; }
-.pick-body .btn { margin-top: auto; }
-.pick-body .item-ar, .pick-note { margin-bottom: 0.6rem; }
-.pick-title { min-height: 2.6em; align-items: flex-start; }
 
 .branch-card { display: flex; flex-direction: column; }
 .branch-card .row-actions { margin-top: auto; padding-top: 1rem; display: grid; grid-template-columns: 1fr; gap: 0.5rem; }
@@ -889,5 +886,12 @@ body { font-variant-numeric: tabular-nums; }
   .hero-plates { display: block; width: 100%; aspect-ratio: 1.1 / 1; }
   .plate { border-radius: 16px; border-width: 2px; }
   .hero-tag { font-size: 1.3rem; }
-  .pick-title { min-height: 0; }
 }
+
+/* Price and button form one footer pinned to the bottom of every card,
+   so both line up across a row whatever the dish name length. */
+.pick-name { font-size: 1.35rem; margin: 0; }
+.pick-foot { margin-top: auto; display: grid; gap: 0.7rem; padding-top: 0.8rem; }
+.pick-price { color: var(--gold-deep); font-size: 1.15rem; font-weight: 700; }
+.pick-foot .btn { margin: 0; }
+@media (max-width: 640px) { .pick-name { font-size: 1.15rem; } .pick-price { font-size: 1.05rem; } }

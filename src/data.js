@@ -1118,36 +1118,33 @@ const food = (name) => `/images/food/${name}.webp`;
 
 export const categoryPhotos = {
   grills: food("grills"),
-  "grills-kg": food("grills"),
+  "grills-kg": food("kebab"),
   shawarma: food("shawarma2"),
-  "shawarma-meals": food("shawarma"),
+  "shawarma-meals": food("shawarma-platter"),
   farooj: food("kabsa"),
   broasted: food("broasted"),
-  hot: food("fattah"),
+  hot: food("hot-appetizers"),
   cold: food("appetizers"),
   salads: food("salads"),
   fattah: food("fattah"),
-  soup: food("kabsa"),
+  soup: food("soup"),
   oven: food("oven"),
   seafood: food("seafood"),
-  western: food("fish"),
-  special: food("fish"),
-  pasta: food("fish"),
+  western: food("fajita"),
+  special: food("fajita"),
+  pasta: food("fajita"),
   sandwiches: food("sandwiches"),
-  "grill-sandwiches": food("sandwiches"),
-  manakish: food("pizza"),
-  shamyat: food("oven"),
+  "grill-sandwiches": food("grill-platter"),
+  manakish: food("manakish"),
+  shamyat: food("pastry"),
   pizza: food("pizza"),
   sweets: food("sweets"),
-  juices: food("sweets"),
-  drinks: food("sweets"),
+  juices: food("juices"),
+  drinks: food("orange"),
 };
 
-// Categories that have a real photo of their own (the rest use the pattern tile).
-export const photoCategories = new Set([
-  "grills", "grills-kg", "shawarma", "shawarma-meals", "farooj", "broasted", "cold", "salads", "fattah",
-  "oven", "seafood", "sandwiches", "grill-sandwiches", "pizza", "sweets",
-]);
+// Every category now has a photo from the restaurant's own menus.
+export const photoCategories = new Set(Object.keys(categoryPhotos));
 
 // Signature picks on the home page: the first name found on the branch menu wins.
 export const signaturePicks = [

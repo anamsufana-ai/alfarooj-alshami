@@ -68,8 +68,8 @@ export default function Home() {
             </div>
           </div>
           <div className="hero-plates" aria-hidden="true">
-            <img className="plate plate-main" src="/images/food/grills.webp" alt="" />
-            <img className="plate plate-a" src="/images/food/shawarma.webp" alt="" />
+            <img className="plate plate-main" src="/images/food/hero-grill.webp" alt="" fetchpriority="high" />
+            <img className="plate plate-a" src="/images/food/hero-mezze.webp" alt="" />
             <img className="plate plate-b" src="/images/food/broasted.webp" alt="" />
           </div>
         </div>
@@ -118,15 +118,15 @@ export default function Home() {
                   <span className="pick-tag">{t(item.tag)}</span>
                 </div>
                 <div className="pick-body">
-                  <div className="pick-title">
-                    <h3>{itemName(item)}</h3>
-                    <strong>{aed(item.price)}</strong>
-                  </div>
+                  <h3 className="pick-name">{itemName(item)}</h3>
                   <p className="item-ar">{isAr ? item.name : item.ar}</p>
                   {item.note && <p className="pick-note">{t(item.note)}</p>}
-                  <button type="button" className="btn outline block" onClick={() => addItem(item)}>
-                    {lineQty(item.id) ? t("Added · {count} in basket", { count: lineQty(item.id) }) : t("+ Add to order")}
-                  </button>
+                  <div className="pick-foot">
+                    <strong className="pick-price">{aed(item.price)}</strong>
+                    <button type="button" className="btn outline block" onClick={() => addItem(item)}>
+                      {lineQty(item.id) ? t("Added · {count} in basket", { count: lineQty(item.id) }) : t("+ Add to order")}
+                    </button>
+                  </div>
                 </div>
               </article>
             ))}
