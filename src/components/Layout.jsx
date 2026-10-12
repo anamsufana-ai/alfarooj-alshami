@@ -8,6 +8,7 @@ import Logo from "./Logo";
 
 const links = [
   ["/menu", "Menu & order"],
+  ["/book", "Book a table"],
   ["/#branches", "Branches"],
   ["/about", "About"],
   ["/contact", "Contact"],
@@ -111,6 +112,9 @@ export default function Layout() {
             </li>
             <li>
               <Link to="/account">{t("My orders")}</Link>
+            </li>
+            <li>
+              <Link to="/book">{t("Book a table")}</Link>
             </li>
             <li>
               <Link to="/admin">{t("Staff login")}</Link>

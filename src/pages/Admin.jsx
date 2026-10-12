@@ -13,6 +13,7 @@ const TABS = [
   ["orders", "All orders"],
   ["reports", "Sales reports"],
   ["customers", "Customers"],
+  ["bookings", "Table bookings"],
 ];
 
 function dubaiToday() {
@@ -960,6 +961,88 @@ function CustomersTab() {
   );
 }
 
+function BookingsTab({ branch }) {
+  const call = useAdminApi();
+  const [bookings, setBookings] = useState(null);
+  const [error, setError] = useState("");
+
+  const load = useCallback(() => {
+    call("/admin/bookings")
+      .then((data) => setBookings(data.bookings))
+      .catch((problem) => setError(problem.message));
+  }, [call]);
+
+  useEffect(load, [load]);
+
+  async function setStatus(id, status) {
+    try {
+      await call(`/admin/bookings/${id}`, { method: "PATCH", body: { status } });
+      load();
+    } catch (problem) {
+      setError(problem.message);
+    }
+  }
+
+  const shown = (bookings || []).filter((entry) => branch === "all" || entry.branchId === branch);
+  return (
+    <>
+      <p className="muted small">Table requests from the last 7 days and the next 60 days. Call the guest, then confirm.</p>
+      {error && <p className="form-error">{error}</p>}
+      {bookings === null ? (
+        <p className="muted">Loading…</p>
+      ) : shown.length === 0 ? (
+        <p className="muted">No table requests.</p>
+      ) : (
+        <div className="table-wrap">
+          <table className="data-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Branch</th>
+                <th>Guest</th>
+                <th>Party</th>
+                <th>Note</th>
+                <th>Status</th>
+                <th />
+              </tr>
+            </thead>
+            <tbody>
+              {shown.map((entry) => (
+                <tr key={entry.id}>
+                  <td>
+                    {entry.date} · {entry.time}
+                  </td>
+                  <td>{entry.branchName}</td>
+                  <td>
+                    {entry.name}
+                    <br />
+                    <a href={`tel:${entry.phone}`}>{entry.phone}</a>
+                  </td>
+                  <td>
+                    {entry.guests} · {entry.area}
+                    {entry.occasion && entry.occasion !== "Regular visit" && <span className="badge subtle">{entry.occasion}</span>}
+                  </td>
+                  <td>{entry.note}</td>
+                  <td>
+                    <span className={`badge booking-${entry.status}`}>{entry.status.replace("_", " ")}</span>
+                  </td>
+                  <td className="row-actions">
+                    {["confirmed", "declined", "seated", "no_show"].map((status) => (
+                      <button key={status} type="button" className="chip cap" disabled={entry.status === status} onClick={() => setStatus(entry.id, status)}>
+                        {status.replace("_", " ")}
+                      </button>
+                    ))}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </>
+  );
+}
+
 export default function Admin() {
   const { adminToken, setAdminToken } = useCafe();
   const [tab, setTab] = useState("overview");
@@ -992,6 +1075,7 @@ export default function Admin() {
       {tab === "orders" && <OrdersTab branch={branch} />}
       {tab === "reports" && <ReportsTab branch={branch} />}
       {tab === "customers" && <CustomersTab />}
+      {tab === "bookings" && <BookingsTab branch={branch} />}
     </section>
   );
 }

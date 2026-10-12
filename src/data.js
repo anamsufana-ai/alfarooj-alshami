@@ -1118,36 +1118,33 @@ const food = (name) => `/images/food/${name}.webp`;
 
 export const categoryPhotos = {
   grills: food("grills"),
-  "grills-kg": food("grills"),
+  "grills-kg": food("kebab"),
   shawarma: food("shawarma2"),
-  "shawarma-meals": food("shawarma"),
+  "shawarma-meals": food("shawarma-platter"),
   farooj: food("kabsa"),
   broasted: food("broasted"),
-  hot: food("fattah"),
+  hot: food("hot-appetizers"),
   cold: food("appetizers"),
   salads: food("salads"),
   fattah: food("fattah"),
-  soup: food("kabsa"),
+  soup: food("soup"),
   oven: food("oven"),
   seafood: food("seafood"),
-  western: food("fish"),
-  special: food("fish"),
-  pasta: food("fish"),
+  western: food("fajita"),
+  special: food("fajita"),
+  pasta: food("fajita"),
   sandwiches: food("sandwiches"),
-  "grill-sandwiches": food("sandwiches"),
-  manakish: food("pizza"),
-  shamyat: food("oven"),
+  "grill-sandwiches": food("grill-platter"),
+  manakish: food("manakish"),
+  shamyat: food("pastry"),
   pizza: food("pizza"),
   sweets: food("sweets"),
-  juices: food("sweets"),
-  drinks: food("sweets"),
+  juices: food("juices"),
+  drinks: food("orange"),
 };
 
-// Categories that have a real photo of their own (the rest use the pattern tile).
-export const photoCategories = new Set([
-  "grills", "grills-kg", "shawarma", "shawarma-meals", "farooj", "broasted", "cold", "salads", "fattah",
-  "oven", "seafood", "sandwiches", "grill-sandwiches", "pizza", "sweets",
-]);
+// Every category now has a photo from the restaurant's own menus.
+export const photoCategories = new Set(Object.keys(categoryPhotos));
 
 // Signature picks on the home page: the first name found on the branch menu wins.
 export const signaturePicks = [
@@ -1187,12 +1184,15 @@ export function locationById(id) {
   return locations.find((location) => location.id === id) || locations[0];
 }
 
-export const tableAreas = ["Family section", "Indoor", "Outdoor"];
+// Seating wishes are requests; the branch confirms by phone what it has.
+export const tableAreas = ["No preference", "Family section", "Indoor", "Outdoor"];
 
+export const IFTAR = "Iftar (at sunset)";
+export const occasions = ["Regular visit", "Ramadan iftar", "Ramadan suhoor", "Family gathering", "Birthday", "Business meal"];
+
+// Today's date in Dubai (UTC+4 all year), the same day the server checks bookings against.
 export function todayInput() {
-  const now = new Date();
-  const local = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
-  return local.toISOString().slice(0, 10);
+  return new Date(Date.now() + 4 * 3600000).toISOString().slice(0, 10);
 }
 
 export function aed(value) {
@@ -1218,9 +1218,11 @@ export function categoriesFor(locationId) {
   return categories.filter((category) => present.has(category.id));
 }
 
+// Table times: Iftar at sunset (the time changes every day of Ramadan), then every
+// half hour from 8:00 AM until 3:30 AM for late dinners and suhoor.
 export const times = (() => {
-  const list = [];
-  for (let hour = 8; hour <= 26; hour += 1) {
+  const list = [IFTAR];
+  for (let hour = 8; hour <= 27; hour += 1) {
     for (const minute of [0, 30]) {
       const displayHour = hour % 24;
       const suffix = displayHour >= 12 ? "PM" : "AM";

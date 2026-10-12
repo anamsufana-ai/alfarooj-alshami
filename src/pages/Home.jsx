@@ -62,14 +62,14 @@ export default function Home() {
               <Link className="btn solid big" to="/menu">
                 {t("Order from {branch}", { branch })}
               </Link>
-              <a className="btn ghost big" href={location.phoneHref}>
-                <Icon name="phone" size={18} /> <span dir="ltr">{location.phone}</span>
-              </a>
+              <Link className="btn ghost big" to="/book">
+                <Icon name="table" size={18} /> {t("Book a table")}
+              </Link>
             </div>
           </div>
           <div className="hero-plates" aria-hidden="true">
-            <img className="plate plate-main" src="/images/food/grills.webp" alt="" />
-            <img className="plate plate-a" src="/images/food/shawarma.webp" alt="" />
+            <img className="plate plate-main" src="/images/food/hero-grill.webp" alt="" fetchpriority="high" />
+            <img className="plate plate-a" src="/images/food/hero-mezze.webp" alt="" />
             <img className="plate plate-b" src="/images/food/broasted.webp" alt="" />
           </div>
         </div>
@@ -118,15 +118,15 @@ export default function Home() {
                   <span className="pick-tag">{t(item.tag)}</span>
                 </div>
                 <div className="pick-body">
-                  <div className="pick-title">
-                    <h3>{itemName(item)}</h3>
-                    <strong>{aed(item.price)}</strong>
-                  </div>
+                  <h3 className="pick-name">{itemName(item)}</h3>
                   <p className="item-ar">{isAr ? item.name : item.ar}</p>
                   {item.note && <p className="pick-note">{t(item.note)}</p>}
-                  <button type="button" className="btn outline block" onClick={() => addItem(item)}>
-                    {lineQty(item.id) ? t("Added · {count} in basket", { count: lineQty(item.id) }) : t("+ Add to order")}
-                  </button>
+                  <div className="pick-foot">
+                    <strong className="pick-price">{aed(item.price)}</strong>
+                    <button type="button" className="btn outline block" onClick={() => addItem(item)}>
+                      {lineQty(item.id) ? t("Added · {count} in basket", { count: lineQty(item.id) }) : t("+ Add to order")}
+                    </button>
+                  </div>
                 </div>
               </article>
             ))}
@@ -200,6 +200,9 @@ export default function Home() {
                 <Link className="btn solid small" to="/menu" onClick={() => setLocationId(place.id)}>
                   {t("Order here")}
                 </Link>
+                <Link className="btn ghost small" to="/book" onClick={() => setLocationId(place.id)}>
+                  {t("Book a table")}
+                </Link>
                 <a className="btn ghost small" href={place.maps} target="_blank" rel="noreferrer">
                   {t("Directions")}
                 </a>
@@ -260,14 +263,14 @@ export default function Home() {
         <div>
           <p className="arabic cta-ar">صحة و ألف عافية</p>
           <h2>{t("Hungry? The grill is already hot.")}</h2>
-          <p>{t("Order online for delivery or pickup, or call your branch.")}</p>
+          <p>{t("Order online for delivery or pickup, or book your table, from a family lunch to iftar in Ramadan.")}</p>
           <div className="hero-actions">
             <Link className="btn solid big" to="/menu">
               {t("Start your order")}
             </Link>
-            <a className="btn ghost big" href={location.phoneHref}>
-              {t("Call {branch}", { branch })}
-            </a>
+            <Link className="btn ghost big" to="/book">
+              {t("Book a table")}
+            </Link>
           </div>
         </div>
       </section>

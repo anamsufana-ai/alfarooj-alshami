@@ -1,4 +1,4 @@
-import { locationById, locations, menuItems, offers, tableAreas, times } from "../../src/data.js";
+import { locationById, locations, menuItems, occasions, offers, tableAreas, times } from "../../src/data.js";
 import { ORDER_STATUSES, PAYMENT_METHODS, PAYMENT_STATUSES, totals } from "../../src/pricing.js";
 import { checkPassword, hashPassword, randomCode, sameSecret, secret, sign, verify } from "../lib/auth.mjs";
 import { buildReport } from "../lib/reports.mjs";
@@ -412,6 +412,7 @@ async function createBooking(req, store) {
   const guests = Number(input.guests);
   if (!Number.isInteger(guests) || guests < 1 || guests > 30) fail(400, "Choose the number of guests.");
   const area = tableAreas.includes(input.area) ? input.area : tableAreas[0];
+  const occasion = occasions.includes(input.occasion) ? input.occasion : occasions[0];
   const id = `BK-${randomCode(6)}`;
   const booking = {
     id,
@@ -424,6 +425,7 @@ async function createBooking(req, store) {
     time: input.time,
     guests,
     area,
+    occasion,
     note: clean(input.note, 300),
     status: "requested",
     createdAt: new Date().toISOString(),
