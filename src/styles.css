@@ -925,3 +925,19 @@ html[dir="ltr"] .item-text .item-ar { text-align: left; }
   .brand-hero .hero-plates { order: -1; }
   .brand-hero .hero-grid { align-content: start; gap: 1.6rem; }
 }
+
+/* Phone hero: main photo centred, everything tighter so both buttons fit on the first screen. */
+@media (max-width: 640px) {
+  .brand-hero { padding-top: 1rem; }
+  .brand-hero .hero-grid { gap: 1rem; }
+  .hero-plates { aspect-ratio: 1.3 / 1; }
+  .plate-main { inset: auto; top: 0; left: 50%; transform: translateX(-50%); width: 84%; height: 74%; }
+  .plate-a { width: 40%; height: 46%; left: 0; bottom: 0; }
+  .plate-b { width: 44%; height: 40%; right: 0; bottom: 2%; }
+  .brand-hero .hero-copy { gap: 0.3rem; }
+  .hero-tag { font-size: 1.15rem; }
+  .brand-hero h1 { font-size: clamp(1.75rem, 8vw, 2.2rem); margin: 0 0 0.2rem; }
+  .brand-hero .lede { font-size: 0.95rem; line-height: 1.45; margin-bottom: 0.2rem; }
+  .brand-hero .hero-actions { margin: 0.4rem 0 0; gap: 0.6rem; }
+  .brand-hero .hero-actions .btn.big { padding: 0.75rem 1.4rem; font-size: 1rem; }
+}
