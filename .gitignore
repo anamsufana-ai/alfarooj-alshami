@@ -17,3 +17,5 @@ netlify
 
 # Local Netlify folder
 .netlify
+# Sample schema created by netlify database init; the app schema is SQL in src/db
+/db
