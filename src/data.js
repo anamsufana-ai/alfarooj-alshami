@@ -1010,9 +1010,10 @@ export const categories = [
 // No special offers are printed on the menus yet. Add them here when the owner confirms them.
 export const offers = [];
 
-const maps = (query) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+// Map pins from the official branches page (alfaroojalshamirestaurant.ae/branches), read 12 Oct 2026.
+const directions = (lat, lng) => `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`;
 
-// Names and phone numbers as printed on the branch menus and the official
+// Names, phone numbers and addresses from the branch menus and the official
 // branches page. Hours are shown only where a menu prints them.
 export const locations = [
   {
@@ -1021,8 +1022,8 @@ export const locations = [
     ar: "الرقة",
     city: "Dubai",
     cityAr: "دبي",
-    address: "Al Rigga Street, Dubai",
-    addressAr: "شارع الرقة، دبي",
+    address: "79 Al Rigga Road, Deira, Dubai",
+    addressAr: "79 شارع الرقة، ديرة، دبي",
     phone: "04 299 9112",
     phones: ["04 299 9112", "04 299 9340"],
     phoneHref: "tel:+97142999112",
@@ -1031,7 +1032,7 @@ export const locations = [
     hours: "",
     deliveryFee: 0,
     deliveryNote: "",
-    maps: maps("Al Farooj Al Shami Restaurant Al Rigga Street Dubai"),
+    maps: directions(25.2619573, 55.32742),
     hero: "/images/food/grills.webp",
   },
   {
@@ -1040,8 +1041,8 @@ export const locations = [
     ar: "إنترناشيونال سيتي",
     city: "Dubai",
     cityAr: "دبي",
-    address: "International City, Dubai",
-    addressAr: "إنترناشيونال سيتي، دبي",
+    address: "P-27, France Cluster, International City, Dubai",
+    addressAr: "P-27، مجمع فرنسا، إنترناشيونال سيتي، دبي",
     phone: "04 584 1456",
     phones: ["04 584 1456"],
     phoneHref: "tel:+97145841456",
@@ -1050,7 +1051,7 @@ export const locations = [
     hours: "Orders 8:00 AM – 3:00 AM",
     deliveryFee: 0,
     deliveryNote: "",
-    maps: maps("Al Farooj Al Shami Restaurant International City Dubai"),
+    maps: directions(25.1593277, 55.4037599),
     hero: "/images/food/seafood.webp",
   },
   {
@@ -1059,8 +1060,8 @@ export const locations = [
     ar: "مويلح",
     city: "Sharjah",
     cityAr: "الشارقة",
-    address: "Muweilah, Sharjah (Branch 1)",
-    addressAr: "مويلح، الشارقة (فرع 1)",
+    address: "Muwailih Commercial, Industrial Area, Sharjah (Branch 1)",
+    addressAr: "مويلح التجارية، المنطقة الصناعية، الشارقة (فرع 1)",
     phone: "06 565 9922",
     phones: ["06 565 9922"],
     phoneHref: "tel:+97165659922",
@@ -1069,17 +1070,17 @@ export const locations = [
     hours: "",
     deliveryFee: 0,
     deliveryNote: "Free delivery",
-    maps: maps("Al Farooj Al Shami Restaurant Muweilah Sharjah"),
+    maps: directions(25.3067204, 55.4573519),
     hero: "/images/food/shawarma.webp",
   },
   {
     id: "sahara",
-    name: "Sahara",
-    ar: "صحارى",
+    name: "Sahara Centre",
+    ar: "صحارى سنتر",
     city: "Sharjah",
     cityAr: "الشارقة",
-    address: "Sahara Mall, Sharjah (Branch 2)",
-    addressAr: "صحارى مول، الشارقة (فرع 2)",
+    address: "Sahara Centre, Al Nahda Street, Al Nahda, Sharjah (Branch 2)",
+    addressAr: "صحارى سنتر، شارع النهدة، النهدة، الشارقة (فرع 2)",
     phone: "06 546 6617",
     phones: ["06 546 6617"],
     phoneHref: "tel:+97165466617",
@@ -1088,7 +1089,7 @@ export const locations = [
     hours: "",
     deliveryFee: 0,
     deliveryNote: "Free delivery",
-    maps: maps("Al Farooj Al Shami Restaurant Sahara Sharjah"),
+    maps: directions(25.2979119, 55.3722989),
     hero: "/images/food/broasted.webp",
   },
   {
@@ -1097,8 +1098,8 @@ export const locations = [
     ar: "عجمان",
     city: "Ajman",
     cityAr: "عجمان",
-    address: "Sheikh Rashid bin Humaid Street, Ajman Towers 1, Ajman",
-    addressAr: "شارع الشيخ راشد بن حميد، أبراج عجمان 1، عجمان",
+    address: "Ajman Towers, Sheikh Rashid Bin Humaid Street, Al Rashidiya 3, Ajman",
+    addressAr: "أبراج عجمان، شارع الشيخ راشد بن حميد، الراشدية 3، عجمان",
     phone: "06 744 4711",
     phones: ["06 744 4711"],
     phoneHref: "tel:+97167444711",
@@ -1107,7 +1108,7 @@ export const locations = [
     hours: "",
     deliveryFee: 0,
     deliveryNote: "Free delivery",
-    maps: maps("Al Farooj Al Shami Restaurant Ajman Towers Ajman"),
+    maps: directions(25.3949944, 55.4292514),
     hero: "/images/food/kabsa.webp",
   },
 ];

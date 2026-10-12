@@ -26,13 +26,14 @@
   International City, Muweilah, Sahara and Ajman come from the earlier import, spot-checked against the PDFs.
   Dishes printed without a price ("as ordered", whole stuffed lamb, mixed appetizers) are not sold online.
 - Logo, food photos and the kufic corner ornament: cut from the restaurant's own printed menus.
-- Branch names and phones: printed on the menus.
+- Branch names and phones: printed on the menus and the official branches page.
 
 ## Before going live: to confirm
 - [to confirm] Delivery fee and delivery area for each branch. Muweilah, Sahara and Ajman menus print "Free delivery";
   Al Rigga and International City print no fee. All are 0 now.
 - [to confirm] Opening hours. Only International City prints hours ("orders 8 AM – 3 AM", Feb 2022 menu).
-- [to confirm] Full street addresses and Google Maps pins for Al Rigga, International City, Muweilah and Sahara.
+- Addresses and "Directions" map pins: from the official branches page (read 12 Oct 2026). [to confirm] Ajman: the page
+  text says "Ajman Towers 1", the map pin says "Tower 5"; the site shows "Ajman Towers".
 - [to confirm] Menus are from 2021–2022. Send current menus if prices changed.
 - [to complete] Each branch's TRN (VAT number) in `src/data.js` → `trn: ""`. It then prints on every invoice.
 - [to complete] WhatsApp numbers per branch (`whatsapp: ""`), if the branches use WhatsApp.
