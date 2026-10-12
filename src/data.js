@@ -1176,7 +1176,7 @@ export const galleryPhotos = [
   { src: food("grills"), caption: "Mixed grill by the kilo, straight off the charcoal" },
   { src: food("fattah"), caption: "Fatteh and foul, the Damascus breakfast" },
   { src: food("oven"), caption: "Oven trays with bread from the oven" },
-  { src: food("seafood"), caption: "Grilled shrimp with fries and garlic" },
+  { src: food("lamb-chops"), caption: "Lamb chops from the charcoal grill" },
   { src: food("appetizers"), caption: "Mixed appetizers to share" },
 ];
 
