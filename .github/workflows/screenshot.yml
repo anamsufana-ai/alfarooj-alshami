@@ -1,0 +1,68 @@
+# Takes desktop and phone screenshots of a web page (for design reference)
+# and saves them on the "design-reference" branch. Started by hand only.
+name: Screenshot a page
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: Page to capture
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Capture
+        env:
+          PAGE_URL: ${{ inputs.url }}
+        run: |
+          mkdir -p shots && cd shots
+          npm init -y >/dev/null
+          npm install playwright@1.56.1 >/dev/null
+          npx playwright install --with-deps chromium >/dev/null
+          cat > capture.mjs <<'JS'
+          import { chromium } from "playwright";
+          const url = process.env.PAGE_URL;
+          const browser = await chromium.launch();
+          for (const [name, width, height] of [["desktop", 1440, 900], ["mobile", 390, 844]]) {
+            const page = await browser.newPage({ viewport: { width, height } });
+            await page.goto(url, { waitUntil: "networkidle", timeout: 60000 });
+            for (let y = 0; y < 20000; y += 700) { await page.evaluate((v) => window.scrollTo(0, v), y); await page.waitForTimeout(150); }
+            await page.evaluate(() => window.scrollTo(0, 0));
+            await page.waitForTimeout(1000);
+            await page.screenshot({ path: `${name}.png`, fullPage: true });
+            if (name === "desktop") {
+              const fs = await import("node:fs");
+              fs.writeFileSync("page.html", await page.content());
+              for (let i = 0; i < 8; i++) {
+                await page.evaluate((v) => window.scrollTo(0, v), i * 900);
+                await page.waitForTimeout(400);
+                await page.screenshot({ path: `desktop-view-${i + 1}.png` });
+              }
+            }
+          }
+          await browser.close();
+          JS
+          node capture.mjs
+          rm -rf node_modules package.json package-lock.json capture.mjs
+      - name: Save to the design-reference branch
+        env:
+          PAGE_URL: ${{ inputs.url }}
+          TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          cd shots
+          git init -q -b design-reference
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          printf '%s\n' "$PAGE_URL" > SOURCE.txt
+          git add -A && git commit -qm "Design reference screenshots"
+          git push -f "https://x-access-token:${TOKEN}@github.com/${REPO}.git" design-reference
