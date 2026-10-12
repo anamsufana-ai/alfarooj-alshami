@@ -947,3 +947,17 @@ html[dir="ltr"] .item-text .item-ar { text-align: left; }
 @media (max-width: 640px) {
   .brand-hero .hero-grid { min-height: calc(100vh - 62px - 1rem); min-height: calc(100svh - 62px - 1rem); align-content: center; gap: 1.4rem; padding-bottom: 1rem; }
 }
+
+/* Phone hero text: more breathing room between tagline, headline, paragraph and buttons. */
+@media (max-width: 640px) {
+  .brand-hero .hero-copy { gap: 0; }
+  .brand-hero .hero-tag { margin: 0 0 0.7rem; }
+  .brand-hero h1 { margin: 0 0 0.9rem; line-height: 1.12; }
+  .brand-hero .lede { margin: 0 0 1.2rem; line-height: 1.6; }
+  .brand-hero .hero-actions { margin: 0; }
+}
+/* Short phones: smaller photo collage so both buttons stay on the first screen. */
+@media (max-width: 640px) and (max-height: 760px) {
+  .hero-plates { aspect-ratio: 1.75 / 1; max-width: 88%; margin-inline: auto; }
+  .brand-hero .hero-grid { gap: 1rem; }
+}
