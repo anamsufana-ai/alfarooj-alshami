@@ -961,3 +961,15 @@ html[dir="ltr"] .item-text .item-ar { text-align: left; }
   .hero-plates { aspect-ratio: 1.75 / 1; max-width: 88%; margin-inline: auto; }
   .brand-hero .hero-grid { gap: 1rem; }
 }
+
+/* Phone hero, final spacing: content sits slightly above centre;
+   picture → text 1.2rem, tagline → headline 0.5rem, headline → text 0.7rem, text → buttons 1.1rem. */
+@media (max-width: 640px) {
+  .brand-hero .hero-grid { align-content: center; gap: 1.2rem; padding-top: 0.5rem; padding-bottom: 9svh; }
+  .brand-hero .hero-tag { margin: 0 0 0.5rem; }
+  .brand-hero h1 { margin: 0 0 0.7rem; }
+  .brand-hero .lede { margin: 0 0 1.1rem; }
+}
+@media (max-width: 640px) and (max-height: 760px) {
+  .brand-hero .hero-grid { padding-bottom: 1rem; }
+}
