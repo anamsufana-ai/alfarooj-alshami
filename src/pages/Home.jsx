@@ -69,8 +69,8 @@ export default function Home() {
           </div>
           <div className="hero-plates" aria-hidden="true">
             <img className="plate plate-main" src="/images/food/hero-grill.webp" alt="" fetchpriority="high" />
-            <img className="plate plate-a" src="/images/food/hero-mezze.webp" alt="" />
-            <img className="plate plate-b" src="/images/food/broasted.webp" alt="" />
+            <img className="plate plate-a" src="/images/food/hero-kibbeh.webp" alt="" />
+            <img className="plate plate-b" src="/images/food/hero-shawarma.webp" alt="" />
           </div>
         </div>
         <div className="hero-branches">

@@ -416,4 +416,5 @@ export const ar = {
   "Birthday": "عيد ميلاد",
   "Business meal": "غداء عمل",
   "Iftar (at sunset)": "الإفطار (عند المغرب)",
+  "Lamb chops from the charcoal grill": "ريش غنم مشوية على الفحم",
 };

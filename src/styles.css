@@ -912,3 +912,16 @@ html[dir="ltr"] .item-text .item-ar { text-align: left; }
 .occasion-pick .chip input { position: absolute; opacity: 0; pointer-events: none; }
 .occasion-pick .chip.active { background: var(--brown); border-color: var(--brown); color: #fff; }
 .occasion-pick .chip:focus-within { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Menu section chips: wrap on wide screens so no name is cut;
+   on phones they scroll sideways with a soft fade at the edge. */
+@media (min-width: 641px) {
+  .menu-tools .chip-bar { flex-wrap: wrap; overflow: visible; }
+}
+@media (max-width: 640px) {
+  .menu-tools .chip-bar { -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); padding-inline-end: 2rem; }
+  html[dir="rtl"] .menu-tools .chip-bar { -webkit-mask-image: linear-gradient(270deg, #000 85%, transparent); mask-image: linear-gradient(270deg, #000 85%, transparent); }
+  /* Phone hero: photos first, then the headline and buttons. */
+  .brand-hero .hero-plates { order: -1; }
+  .brand-hero .hero-grid { align-content: start; gap: 1.6rem; }
+}
