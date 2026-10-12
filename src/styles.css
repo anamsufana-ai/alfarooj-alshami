@@ -941,3 +941,9 @@ html[dir="ltr"] .item-text .item-ar { text-align: left; }
   .brand-hero .hero-actions { margin: 0.4rem 0 0; gap: 0.6rem; }
   .brand-hero .hero-actions .btn.big { padding: 0.75rem 1.4rem; font-size: 1rem; }
 }
+
+/* Phone hero: fill the first screen and centre the content vertically,
+   so there is no empty band below the buttons. */
+@media (max-width: 640px) {
+  .brand-hero .hero-grid { min-height: calc(100vh - 62px - 1rem); min-height: calc(100svh - 62px - 1rem); align-content: center; gap: 1.4rem; padding-bottom: 1rem; }
+}
