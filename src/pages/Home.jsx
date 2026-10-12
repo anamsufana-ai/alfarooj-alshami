@@ -62,9 +62,9 @@ export default function Home() {
               <Link className="btn solid big" to="/menu">
                 {t("Order from {branch}", { branch })}
               </Link>
-              <a className="btn ghost big" href={location.phoneHref}>
-                <Icon name="phone" size={18} /> <span dir="ltr">{location.phone}</span>
-              </a>
+              <Link className="btn ghost big" to="/book">
+                <Icon name="table" size={18} /> {t("Book a table")}
+              </Link>
             </div>
           </div>
           <div className="hero-plates" aria-hidden="true">
@@ -200,6 +200,9 @@ export default function Home() {
                 <Link className="btn solid small" to="/menu" onClick={() => setLocationId(place.id)}>
                   {t("Order here")}
                 </Link>
+                <Link className="btn ghost small" to="/book" onClick={() => setLocationId(place.id)}>
+                  {t("Book a table")}
+                </Link>
                 <a className="btn ghost small" href={place.maps} target="_blank" rel="noreferrer">
                   {t("Directions")}
                 </a>
@@ -260,14 +263,14 @@ export default function Home() {
         <div>
           <p className="arabic cta-ar">صحة و ألف عافية</p>
           <h2>{t("Hungry? The grill is already hot.")}</h2>
-          <p>{t("Order online for delivery or pickup, or call your branch.")}</p>
+          <p>{t("Order online for delivery or pickup, or book your table, from a family lunch to iftar in Ramadan.")}</p>
           <div className="hero-actions">
             <Link className="btn solid big" to="/menu">
               {t("Start your order")}
             </Link>
-            <a className="btn ghost big" href={location.phoneHref}>
-              {t("Call {branch}", { branch })}
-            </a>
+            <Link className="btn ghost big" to="/book">
+              {t("Book a table")}
+            </Link>
           </div>
         </div>
       </section>

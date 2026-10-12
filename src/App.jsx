@@ -5,6 +5,7 @@ import About from "./pages/About";
 import Account from "./pages/Account";
 import { EnglishOnly } from "./i18n";
 import Admin from "./pages/Admin";
+import Book from "./pages/Book";
 import Checkout from "./pages/Checkout";
 import Contact from "./pages/Contact";
 import Home from "./pages/Home";
@@ -44,6 +45,7 @@ export default function App() {
             </EnglishOnly>
           }
         />
+        <Route path="book" element={<Book />} />
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />
         <Route path="terms" element={<Legal kind="terms" />} />
