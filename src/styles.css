@@ -982,3 +982,19 @@ html[dir="ltr"] .item-text .item-ar { text-align: left; }
 @media (max-width: 640px) and (min-height: 761px) {
   .hero-plates { aspect-ratio: 1.12 / 1; }
 }
+
+/* Phone header: always show the restaurant name next to the logo.
+   The language switch moves into the Menu drawer to make room. */
+.nav-lang { display: none; }
+@media (max-width: 640px) {
+  .brand > span { display: flex !important; }
+  .brand { gap: 0.45rem; min-width: 0; }
+  .brand .logo-mark { width: 40px; }
+  .brand strong { font-size: 1.05rem; line-height: 1.05; white-space: normal; }
+  .brand .brand-line { display: block; }
+  .brand small.arabic { display: block !important; font-size: 0.72rem; margin-top: 2px; }
+  .header-actions > .lang-toggle { display: none; }
+  .nav-lang { display: inline-block; align-self: flex-start; margin-top: 0.8rem; }
+}
+/* Desktop: name on one line. */
+@media (min-width: 641px) { .brand strong .brand-line { display: inline; } }
