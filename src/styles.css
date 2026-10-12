@@ -973,3 +973,12 @@ html[dir="ltr"] .item-text .item-ar { text-align: left; }
 @media (max-width: 640px) and (max-height: 760px) {
   .brand-hero .hero-grid { padding-bottom: 1rem; }
 }
+
+/* Phone hero: bigger collage on tall phones and almost no extra space at the bottom,
+   so the content fills the screen down to just above the browser bar. */
+@media (max-width: 640px) {
+  .brand-hero .hero-grid { padding-bottom: 1.5rem; gap: 1.4rem; }
+}
+@media (max-width: 640px) and (min-height: 761px) {
+  .hero-plates { aspect-ratio: 1.12 / 1; }
+}
