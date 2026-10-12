@@ -1,0 +1,30 @@
+# Uploads this branch to a Netlify preview project and builds it there.
+# Started by hand (Actions → Preview deploy → Run workflow); nothing runs on push.
+name: Preview deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      site_id:
+        description: Netlify project (site) id
+        required: true
+      proxy_path:
+        description: One-time deploy link from the Netlify MCP deploy tool
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Hide the deploy link in logs
+        run: echo "::add-mask::${{ inputs.proxy_path }}"
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Upload and build on Netlify
+        env:
+          SITE_ID: ${{ inputs.site_id }}
+          PROXY_PATH: ${{ inputs.proxy_path }}
+        run: npx -y @netlify/mcp@latest --site-id "$SITE_ID" --proxy-path "$PROXY_PATH"

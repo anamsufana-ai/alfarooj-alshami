@@ -1,12 +1,7 @@
-# The package is unpinned so Git builds use Netlify's current Next.js runtime.
-# Secrets belong in the Netlify UI, not here.
 [build]
-command = "npm run build"
-publish = ".next"
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
 
-[build.environment]
-NODE_VERSION = "22"
-NEXT_TELEMETRY_DISABLED = "1"
-
-[[plugins]]
-package = "@netlify/plugin-nextjs"
+[functions]
+  node_bundler = "esbuild"

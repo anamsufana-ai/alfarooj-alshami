@@ -1,21 +1,7 @@
 node_modules
-.next
-out
 dist
-.turbo
-coverage
-.data
+.DS_Store
+.netlify
 .env
 .env.local
 .env.*.local
-*.log
-.DS_Store
-next-env.d.ts
-.vercel
-netlify
-*.tsbuildinfo
-
-# Local Netlify folder
-.netlify
-# Sample schema created by netlify database init; the app schema is SQL in src/db
-/db
