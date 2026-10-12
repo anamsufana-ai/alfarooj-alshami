@@ -53,7 +53,15 @@ export default function Layout() {
         <Link className="brand" to="/" aria-label={t("Al Farooj Al Shami home")} onClick={() => setOpen(false)}>
           <Logo decorative />
           <span>
-            <strong>{t("Al Farooj Al Shami")}</strong>
+            <strong>
+              {isAr ? (
+                t("Al Farooj Al Shami")
+              ) : (
+                <>
+                  <span className="brand-line">Al Farooj</span> <span className="brand-line">Al Shami</span>
+                </>
+              )}
+            </strong>
             <small className="arabic">مطعم الفروج الشامي</small>
           </span>
         </Link>
@@ -69,6 +77,17 @@ export default function Layout() {
               </NavLink>
             ),
           )}
+          <button
+            type="button"
+            className="lang-toggle nav-lang"
+            onClick={() => {
+              toggle();
+              setOpen(false);
+            }}
+            lang={isAr ? "en" : "ar"}
+          >
+            {isAr ? "English" : "العربية"}
+          </button>
         </nav>
         <div className="header-actions">
           <button
