@@ -1,8 +1,11 @@
-# Netlify runs the current OpenNext adapter automatically for Next.js.
-# Do not pin @netlify/plugin-nextjs. Secrets belong in the Netlify UI, not here.
+# The package is unpinned so Git builds use Netlify's current Next.js runtime.
+# Secrets belong in the Netlify UI, not here.
 [build]
 command = "npm run build"
 
 [build.environment]
 NODE_VERSION = "22"
 NEXT_TELEMETRY_DISABLED = "1"
+
+[[plugins]]
+package = "@netlify/plugin-nextjs"
