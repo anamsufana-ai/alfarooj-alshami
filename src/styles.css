@@ -895,3 +895,12 @@ body { font-variant-numeric: tabular-nums; }
 .pick-price { color: var(--gold-deep); font-size: 1.15rem; font-weight: 700; }
 .pick-foot .btn { margin: 0; }
 @media (max-width: 640px) { .pick-name { font-size: 1.15rem; } .pick-price { font-size: 1.05rem; } }
+
+/* Menu page: every dish card in a section has the same height, price on top,
+   + button at the same distance from the bottom. */
+.item-list { grid-auto-rows: 1fr; }
+.item-row { align-items: stretch; }
+.item-buy { display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; min-width: 5.2rem; }
+.item-text .item-ar { text-align: start; direction: rtl; justify-self: start; }
+html[dir="ltr"] .item-text .item-ar { text-align: left; }
+@media (max-width: 640px) { .section-banner h2 { display: grid; gap: 0.2rem; } .section-banner h2 small { font-size: 0.95rem; } }
