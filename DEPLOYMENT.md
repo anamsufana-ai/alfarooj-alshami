@@ -27,7 +27,7 @@ Required before a hosted site can take orders:
 
 | Variable | Purpose |
 | --- | --- |
-| `DATABASE_URL` | Pooled Postgres connection. Netlify does not provide the database. Use the pooler URL and keep `prepare` disabled, which this app already does. |
+| `DATABASE_URL` or `NETLIFY_DB_URL` | Postgres connection. On Netlify, installing `@netlify/database` provisions a database and sets `NETLIFY_DB_URL`. The app also accepts `DATABASE_URL`. Connections use `prepare: false`. |
 | `APP_BASE_URL` | Public origin, no trailing slash. |
 | `ALLOWED_ORIGINS` | Same origin, or a comma-separated list if you add a separate client. |
 | `AUTH_SECRET` | Long random string for any shared environment. Sessions are random tokens stored as SHA-256 hashes. |

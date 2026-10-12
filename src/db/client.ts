@@ -84,8 +84,14 @@ function openPostgresDatabase(url: string): Handle {
   return wrap(drizzlePostgres(client) as unknown as Queryable, () => client.end());
 }
 
+export function databaseUrl(): string | undefined {
+  const value = process.env.DATABASE_URL || process.env.NETLIFY_DB_URL || process.env.NETLIFY_DATABASE_URL;
+  const trimmed = value?.trim();
+  return trimmed ? trimmed : undefined;
+}
+
 export function databaseMode(): "external" | "embedded" | "missing" {
-  if (process.env.DATABASE_URL) return "external";
+  if (databaseUrl()) return "external";
   if (process.env.NETLIFY || process.env.CONTEXT) return "missing";
   return "embedded";
 }
@@ -99,7 +105,7 @@ export async function getDb(): Promise<Handle> {
       if (mode === "missing") {
         throw new Error("DATABASE_URL is required on Netlify. Embedded Postgres is only for local development.");
       }
-      const db = mode === "external" ? openPostgresDatabase(process.env.DATABASE_URL as string) : await openEmbeddedDatabase();
+      const db = mode === "external" ? openPostgresDatabase(databaseUrl() as string) : await openEmbeddedDatabase();
       await migrate(db);
       const { seedIfEmpty } = await import("./seed");
       await seedIfEmpty(db);
