@@ -845,7 +845,6 @@ a { color: var(--gold-deep); }
   .brand-hero .hero-actions { justify-content: center; }
   .brand-hero .hero-logo { width: 112px; }
   .brand-hero h1 { font-size: clamp(2rem, 9vw, 2.6rem); }
-  .hero-plates { display: none; }
   .brand-hero .lede { font-size: 1rem; }
   .feature-strip { grid-template-columns: 1fr 1fr; gap: 0.6rem; padding: 1rem; }
   .feature-strip div { grid-template-columns: 1fr; padding: 0.3rem; row-gap: 0.3rem; }
@@ -863,3 +862,32 @@ html[dir="rtl"] h1, html[dir="rtl"] h2, html[dir="rtl"] h3, html[dir="rtl"] .bra
 html[dir="rtl"] .arabic { font-family: var(--kufi); font-style: normal; }
 html[dir="rtl"] .eyebrow.ornament::before, html[dir="rtl"] .photo-cat.no-photo::before { transform: scaleX(-1); }
 html[dir="rtl"] .branch-card::after { transform: none; }
+
+/* ---------- round 2 fixes ---------- */
+/* Digits all take the same width, so phone numbers and prices line up. */
+body { font-variant-numeric: tabular-nums; }
+
+/* Hero fills the first screen (below the header); the branch picker starts under it. */
+.hero-tag { font-size: 1.45rem; }
+
+/* Cards: the button always sits the same distance from the bottom. */
+.pick-card { display: flex; flex-direction: column; }
+.pick-body { flex: 1; display: flex; flex-direction: column; gap: 0.35rem; }
+.pick-body .btn { margin-top: auto; }
+.pick-body .item-ar, .pick-note { margin-bottom: 0.6rem; }
+.pick-title { min-height: 2.6em; align-items: flex-start; }
+
+.branch-card { display: flex; flex-direction: column; }
+.branch-card .row-actions { margin-top: auto; padding-top: 1rem; display: grid; grid-template-columns: 1fr; gap: 0.5rem; }
+.branch-card .row-actions .btn { width: 100%; justify-self: stretch; margin: 0; }
+
+@media (max-width: 960px) {
+  .hero-plates { max-width: 520px; }
+}
+@media (max-width: 640px) {
+  .brand-hero .hero-grid { min-height: calc(100vh - 62px - 1.5rem); min-height: calc(100svh - 62px - 1.5rem); gap: 1.4rem; align-content: space-evenly; }
+  .hero-plates { display: block; width: 100%; aspect-ratio: 1.1 / 1; }
+  .plate { border-radius: 16px; border-width: 2px; }
+  .hero-tag { font-size: 1.3rem; }
+  .pick-title { min-height: 0; }
+}

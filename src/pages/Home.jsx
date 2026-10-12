@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import Icon from "../components/Icon";
-import Logo from "../components/Logo";
 import { aed, categoriesFor, categoryPhotos, galleryPhotos, locations, photoCategories, picksFor } from "../data";
 import { useLang } from "../i18n";
 import { useCafe } from "../store";
@@ -54,7 +53,6 @@ export default function Home() {
       <section className="hero brand-hero">
         <div className="hero-grid">
           <div className="hero-copy">
-            <Logo className="hero-logo" variant="full" />
             <p className="hero-tag arabic">لقمة أهل الشام</p>
             <h1>{t("Damascus cooking, from our charcoal to your table")}</h1>
             <p className="lede">
