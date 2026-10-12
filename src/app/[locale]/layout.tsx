@@ -37,9 +37,18 @@ export default async function LocaleLayout({ children, params }: { children: Rea
       <a className="skip" href="#main">{text.skip}</a>
       <SiteHeader locale={raw} actor={actor} needsSetup={needsSetup} />
       <main id="main">{children}</main>
-      <footer className="bar shell">
-        <span>{text.brandAr}</span>
-        <a href="https://www.alfaroojalshamirestaurant.ae/">{text.official}</a>
+      <footer className="site-footer">
+        <div className="shell footer-grid">
+          <div>
+            <img className="footer-logo" src="/brand/logo.png" alt="" />
+            <p>{text.brand}</p>
+            <p>{text.brandAr}</p>
+          </div>
+          <div>
+            <p className="eyebrow">{text.official}</p>
+            <a href="https://www.alfaroojalshamirestaurant.ae/">alfaroojalshamirestaurant.ae</a>
+          </div>
+        </div>
       </footer>
     </>
   );

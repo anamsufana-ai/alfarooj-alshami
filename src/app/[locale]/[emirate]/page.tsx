@@ -17,7 +17,8 @@ export default async function EmiratePage({ params }: { params: Promise<{ locale
     await db.execute(sql`SELECT slug, name_en, name_ar, phones FROM branches WHERE emirate_id = ${emirate} AND is_active = true ORDER BY name_en`),
   );
   return (
-    <section className="shell hero">
+    <section className="shell page">
+      <p className="eyebrow">{text.chooseCity}</p>
       <h1>{raw === "ar" ? city[0].name_ar : city[0].name_en}</h1>
       <div className="cards">
         {branches.map((branch) => (

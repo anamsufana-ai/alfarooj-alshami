@@ -13,7 +13,7 @@ export function SiteHeader({ locale, actor, needsSetup }: { locale: Locale; acto
       </Link>
       <nav aria-label="Main">
         <Link href={`/${locale}`}>{text.home}</Link>
-        <Link href={`/${locale}/cart`}>{text.cart}</Link>
+        <Link className="cart-pill" href={`/${locale}/cart`}>{text.cart}</Link>
         {actor ? <Link href={`/${locale}/account`}>{text.account}</Link> : <Link href={`/${locale}/login`}>{text.login}</Link>}
         {actor && isStaff(actor.role) ? <Link href={`/${locale}/admin`}>{text.admin}</Link> : null}
         {actor?.role === "driver" ? <Link href={`/${locale}/drive`}>{text.driverShare}</Link> : null}

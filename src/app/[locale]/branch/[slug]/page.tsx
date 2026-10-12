@@ -86,19 +86,24 @@ export default async function BranchPage({ params }: { params: Promise<{ locale:
   const expected = menu[0] ? menuPageCounts[menu[0].id] : undefined;
   const mapQuery = branch.location_precision === "street_only" ? branch.published_location_en : null;
   return (
-    <section className="shell hero">
+    <section className="shell page">
+      <header className="page-head">
+      <p className="eyebrow">{text.eyebrow}</p>
       <h1>{raw === "ar" ? branch.name_ar : branch.name_en}</h1>
-      <p>{raw === "ar" ? branch.name_en : branch.name_ar}</p>
-      <p>{text.phone}: {(branch.phones ?? []).map((phone) => <a key={phone} href={`tel:${phone.replace(/\s/g, "")}`}> {phone}</a>)}</p>
+      <p className="muted">{raw === "ar" ? branch.name_en : branch.name_ar}</p>
+      <p className="phone-line">{(branch.phones ?? []).map((phone) => <a key={phone} href={`tel:${phone.replace(/\s/g, "")}`}>{phone}</a>)}</p>
       {branch.published_location_en || branch.published_location_ar ? <p>{raw === "ar" ? branch.published_location_ar : branch.published_location_en}</p> : <p>{text.addressMissing}</p>}
-      {branch.address_conflict_note_en ? <p className="notice">{raw === "ar" ? branch.address_conflict_note_ar : branch.address_conflict_note_en}</p> : null}
       {mapQuery ? <p><a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(mapQuery)}`}>{text.mapSearch}</a></p> : null}
-      <p>{branch.hours_status === "unknown" ? text.hoursUnknown : (raw === "ar" ? branch.hours_note_ar : branch.hours_note_en)}</p>
-      <p>{branch.delivery_mode === "printed_free_unconfirmed" ? text.deliveryFreeUnconfirmed : branch.delivery_mode === "printed_fee_unknown" ? text.deliveryFeeUnknown : text.deliveryOff}</p>
-      {branch.pickup_mode !== "enabled" ? <p>{text.pickupOff}</p> : null}
+      <div className="facts">
+        <p>{branch.hours_status === "unknown" ? text.hoursUnknown : (raw === "ar" ? branch.hours_note_ar : branch.hours_note_en)}</p>
+        <p>{branch.delivery_mode === "printed_free_unconfirmed" ? text.deliveryFreeUnconfirmed : branch.delivery_mode === "printed_fee_unknown" ? text.deliveryFeeUnknown : text.deliveryOff}</p>
+        {branch.pickup_mode !== "enabled" ? <p>{text.pickupOff}</p> : null}
+      </div>
+      {branch.address_conflict_note_en ? <p className="notice">{raw === "ar" ? branch.address_conflict_note_ar : branch.address_conflict_note_en}</p> : null}
       {menu[0]?.review_status !== "approved" ? <p className="notice">{text.pendingMenu}</p> : null}
       {expected && pages.size < expected ? <p className="notice">{text.missingPanels}</p> : null}
-      {branch.source_note_en ? <p>{branch.source_note_en}</p> : null}
+      {branch.source_note_en ? <details className="source-note"><summary>{text.official}</summary><p>{branch.source_note_en}</p></details> : null}
+      </header>
       {cards.length === 0 ? <p>{text.noItems}</p> : <MenuBoard locale={raw} branchId={branch.id} items={cards} />}
       <p><Link className="btn" href={`/${raw}/cart`}>{text.cart}</Link></p>
     </section>
