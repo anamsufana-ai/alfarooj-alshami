@@ -7,6 +7,9 @@
   NODE_VERSION = "22"
   # Build tools are regular dependencies, so a NODE_ENV=production install still has them.
   NPM_CONFIG_PRODUCTION = "false"
+  # The old Next.js site left the Next.js Runtime plugin installed on this project.
+  # This app is not Next.js, so tell that plugin to do nothing.
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
 
 [functions]
   node_bundler = "esbuild"
