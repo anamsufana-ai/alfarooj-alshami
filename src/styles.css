@@ -667,10 +667,10 @@ html[dir="rtl"] .english-only h1, html[dir="rtl"] .english-only h2, html[dir="rt
 }
 
 /* Hero fills the whole first screen; the info strip starts below it */
-.photo-hero { min-height: 100vh; min-height: 100svh; }
+.photo-hero { min-height: 100vh; min-height: calc(100svh - var(--install-bar, 0px)); }
 .feature-strip { margin-top: 2.5rem; }
 @media (max-width: 640px) {
-  .photo-hero { min-height: 100vh; min-height: 100svh; align-items: center; }
+  .photo-hero { min-height: 100vh; min-height: calc(100svh - var(--install-bar, 0px)); align-items: center; }
   .hero-inner { padding: 3rem 0; }
 }
 
@@ -882,7 +882,7 @@ body { font-variant-numeric: tabular-nums; }
   .hero-plates { max-width: 520px; }
 }
 @media (max-width: 640px) {
-  .brand-hero .hero-grid { min-height: calc(100vh - 62px - 1.5rem); min-height: calc(100svh - 62px - 1.5rem); gap: 1.4rem; align-content: space-evenly; }
+  .brand-hero .hero-grid { min-height: calc(100vh - 62px - 1.5rem); min-height: calc(100svh - var(--install-bar, 0px) - 62px - 1.5rem); gap: 1.4rem; align-content: space-evenly; }
   .hero-plates { display: block; width: 100%; aspect-ratio: 1.1 / 1; }
   .plate { border-radius: 16px; border-width: 2px; }
   .hero-tag { font-size: 1.3rem; }
@@ -945,7 +945,7 @@ html[dir="ltr"] .item-text .item-ar { text-align: left; }
 /* Phone hero: fill the first screen and centre the content vertically,
    so there is no empty band below the buttons. */
 @media (max-width: 640px) {
-  .brand-hero .hero-grid { min-height: calc(100vh - 62px - 1rem); min-height: calc(100svh - 62px - 1rem); align-content: center; gap: 1.4rem; padding-bottom: 1rem; }
+  .brand-hero .hero-grid { min-height: calc(100vh - 62px - 1rem); min-height: calc(100svh - var(--install-bar, 0px) - 62px - 1rem); align-content: center; gap: 1.4rem; padding-bottom: 1rem; }
 }
 
 /* Phone hero text: more breathing room between tagline, headline, paragraph and buttons. */
