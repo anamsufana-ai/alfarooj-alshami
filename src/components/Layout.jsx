@@ -166,6 +166,7 @@ export default function Layout() {
             {" · "}
             <Link to="/privacy">{t("Privacy")}</Link>
           </span>
+          <span>© 2026 Designed by ALEXIS FZC LLC</span>
         </div>
       </footer>
       {toast && (
